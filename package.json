@@ -1,0 +1,24 @@
+{
+  "name": "gulp-vapor",
+  "version": "1.0.1",
+  "keywords": ["gulpplugin"],
+  "description": "Gulp task suite for Vapor web framework",
+  "main": "dist/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.4"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register",
+    "build": "babel scripts --presets babel-preset-es2015 --out-dir distribution",
+    "prepublish": "npm run build"
+  },
+  "author": "mckomo",
+  "license": "MIT"
+}

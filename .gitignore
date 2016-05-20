@@ -1,0 +1,7 @@
+.build
+.idea
+.DS_Store
+Packages
+xcuserdata
+node_modules
+dist
