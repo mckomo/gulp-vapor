@@ -24,20 +24,20 @@ if you already have `package.json` file.
 
 ### Usage 
 
-##### Reload project when a source file changes
+##### Reload project when a source code changes
 
 Modify your `gulpfile.js` to include following parts:
 
 ```js
 'use strict';
 
-let gulp = require('gulp');
-let vapor = require('gulp-vapor');
+var gulp = require('gulp');
+var vapor = require('gulp-vapor');
 
 gulp.task('vapor:start', vapor.start);
 gulp.task('vapor:reload', vapor.reload);
 
-gulp.task('watch', () => {
+gulp.task('watch', function() {
    gulp.watch('./App/**/*', ['vapor:reload']);
 });
 
