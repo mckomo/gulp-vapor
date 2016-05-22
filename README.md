@@ -1,8 +1,10 @@
 # gulp-vapor
 
+[![Build Status](https://travis-ci.org/mckomo/gulp-vapor.svg)](https://travis-ci.org/mckomo/gulp-vapor)
+
 [Gulp](http://gulpjs.com/) task suite for [Vapor](http://qutheory.io/) web framework.
 
-Use `gulp-vapor` to **automate project recompilation** after source code change (see [Usage](#Usage)).
+Use `gulp-vapor` to **automate project recompilation** after source code change (see [Usage](#usage)).
 
 ### Installation
 
