@@ -24,8 +24,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Vapor = function Vapor(shell, logger) {
 
+    var ProjectPath = process.cwd();
+    var ProjectName = ProjectPath.substr(ProjectPath.lastIndexOf('/') + 1);
     var BuildCommand = 'swift build';
-    var StartCommand = '.build/debug/App';
+    var StartCommand = '.build/debug/' + ProjectName;
 
     var _vapor = void 0;
     var _shell = void 0;
