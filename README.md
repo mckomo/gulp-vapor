@@ -6,6 +6,10 @@
 
 Use `gulp-vapor` to **automate project recompilation** after source code change (see [Usage](#usage)).
 
+### Compatiblity
+
+`gulp-vapor` is compatible with **Vapor 1.0.1**.
+
 ### Installation
 
 Install `gulp-vapor` via npm:
@@ -22,7 +26,7 @@ $ npm install --save-dev gulp-vapor
 
 if you already have `package.json` file.
 
-### Usage 
+### Usage
 
 ##### Reload project when a source code changes
 
@@ -38,7 +42,7 @@ gulp.task('vapor:start', vapor.start);
 gulp.task('vapor:reload', vapor.reload);
 
 gulp.task('watch', function() {
-   gulp.watch('./App/**/*', ['vapor:reload']);
+   gulp.watch('./Sources/**/*', ['vapor:reload']);
 });
 
 
@@ -52,6 +56,3 @@ $ gulp
 ```
 
 By now, you should be able to see you project running in a browser at [http://localhost:8080](http://localhost:8080/). From now on, If you change something in your `App` folder, project will **reload automatically**.
-
-
-
