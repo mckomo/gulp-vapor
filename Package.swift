@@ -13,6 +13,7 @@ let package = Package(
         "Resources",
         "Tests",
         "scripts",
+        "test",
         "distribution",
         "node_modules",
     ]
