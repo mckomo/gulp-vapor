@@ -7,8 +7,15 @@ export default class Shell {
     }
 
     spawn(command, callback) {
-        let proc = _spawn(command);
-        callback(proc);
+
+        const program = command.start[0];
+        const args = command.start[1];
+
+        const proc = _spawn(program, args);
+
+        if (callback) {
+          callback(proc);
+        }
 
         return proc;
     }

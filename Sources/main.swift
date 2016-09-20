@@ -3,7 +3,7 @@ import Vapor
 let drop = Droplet()
 
 drop.get { req in
-  return "Hello, World!"
+  return "gulp-vapor"
 }
 
 drop.run()
