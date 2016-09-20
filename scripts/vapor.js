@@ -49,10 +49,12 @@ const Vapor = ((shell, logger, config) => {
 
             _logger.info('Starting Vapor');
 
-            _proc = _shell.spawn(_commands.start, (proc) => {
+            const program = _commands.start[0];
+            const args = _commands.start[1];
+            const options = { stdio: 'inherit' };
+
+            _proc = _shell.spawn(program, args, options, (proc) => {
               proc.on('error', _logger.error);
-              proc.stdout.on('data', _logger.info);
-              proc.stderr.on('data', _logger.error);
             });
 
             callback();
