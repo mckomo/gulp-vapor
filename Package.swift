@@ -3,12 +3,18 @@ import PackageDescription
 let package = Package(
     name: "gulp-vapor",
     dependencies: [
-        .Package(url: "https://github.com/qutheory/vapor.git", majorVersion: 0, minor: 8),
+        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 0)
     ],
     exclude: [
-        "node_modules",
-		"distribution",
+        "Config",
+        "Database",
+        "Localization",
+        "Public",
+        "Resources",
+        "Tests",
         "scripts",
-        "test"
+        "test",
+        "distribution",
+        "node_modules",
     ]
 )

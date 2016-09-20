@@ -3,32 +3,36 @@
 import Shell from './shell';
 import Logger from './logger';
 import Composition from './composition';
+import Config from './config';
 
-const Vapor = ((shell, logger) => {
-
-    const BuildCommand = 'swift build';
-    const StartCommand = '.build/debug/App';
+const Vapor = ((shell, logger, config) => {
 
     let _vapor;
+    let _proc;
     let _shell;
     let _logger;
-    let _proc;
+    let _commands;
 
     class Vapor {
 
-        constructor(shell, logger) {
-            _vapor = this;
+        constructor(shell, logger, config) {
+
+            this.config = config || Config;
+
             _shell = shell || new Shell();
             _logger = logger || new Logger();
+            _commands = this.config.commands;
+            _vapor = this;
         }
 
         build(callback) {
 
             _logger.info('Building Vapor');
 
-            _shell.exec(BuildCommand, (error, stdout, stderr) => {
-                if (error)
-                    _logger.info(stdout) && _logger.error(stderr);
+            _shell.exec(_commands.build, (error, stdout, stderr) => {
+                if (error) {
+                  _logger.info(stdout) && _logger.error(stderr);
+                }
 
                 callback(error);
             });
@@ -43,11 +47,14 @@ const Vapor = ((shell, logger) => {
                 return this;
             }
 
-            _logger.info(`Starting Vapor`);
+            _logger.info('Starting Vapor');
 
-            _proc = _shell.spawn(StartCommand, (proc) => {
-                proc.stdout.on('data', _logger.info);
-                proc.stderr.on('data', _logger.error);
+            const program = _commands.start[0];
+            const args = _commands.start[1];
+            const options = { stdio: 'inherit' };
+
+            _proc = _shell.spawn(program, args, options, (proc) => {
+              proc.on('error', _logger.error);
             });
 
             callback();
@@ -58,9 +65,10 @@ const Vapor = ((shell, logger) => {
         stop(callback) {
 
             _logger.info('Stopping Vapor');
-            
-            if (_proc)
-                _proc.kill();
+
+            if (_proc) {
+              _proc.kill();
+            }
 
             callback();
 
@@ -68,12 +76,14 @@ const Vapor = ((shell, logger) => {
         }
 
         reload(callback) {
-            let reloadSteps = [_vapor.build, _vapor.stop, _wait, _vapor.start, callback];
-            let reloadComposition = Composition(reloadSteps)
+
+            const steps = [_vapor.build, _vapor.stop, _wait, _vapor.start, callback];
+
+            const reload = Composition(steps)
                 .withFallback(callback)
                 .compose();
 
-            reloadComposition();
+            reload();
 
             return this;
         }
@@ -87,7 +97,7 @@ const Vapor = ((shell, logger) => {
         return _proc && !_proc.killed
     }
 
-    return new Vapor(shell, logger);
+    return new Vapor(shell, logger, config);
 
 });
 

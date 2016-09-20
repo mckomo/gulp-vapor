@@ -36,10 +36,9 @@ describe('Vapor', () => {
     describe('#build', () => {
 
         it('executes the app build', () => {
-            vapor.config.commands.build = 'swift build --some-flag';
             vapor.build(callback);
 
-            assert(exec.calledWith('swift build --some-flag'));
+            assert(exec.calledWith('swift build'));
         });
 
         it('triggers the callback', () => {
@@ -63,10 +62,9 @@ describe('Vapor', () => {
     describe('#start', () => {
 
         it('spawns the app process', () => {
-            vapor.config.commands.start = ['.build/debug/MyApp', ['serve']]
             vapor.start(callback);
 
-            assert(spawn.calledWith('.build/debug/MyApp', ['serve']));
+            assert(spawn.calledWith('.build/debug/App'));
         });
 
         it('triggers the callback', () => {

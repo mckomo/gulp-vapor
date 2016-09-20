@@ -6,9 +6,13 @@ export default class Shell {
         return _exec(command, callback);
     }
 
-    spawn(command, callback) {
-        let proc = _spawn(command);
-        callback(proc);
+    spawn(program, args = [], options = {}, callback) {
+
+        const proc = _spawn(program, args, options);
+
+        if (callback) {
+          callback(proc);
+        }
 
         return proc;
     }

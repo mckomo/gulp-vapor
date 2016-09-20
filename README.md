@@ -4,7 +4,8 @@
 
 [Gulp](http://gulpjs.com/) task suite for [Vapor](http://qutheory.io/) web framework.
 
-Use `gulp-vapor` to **automate project recompilation** after source code change (see [Usage](#usage)).
+
+Use `gulp-vapor` to **hot-reaload** your [Vapor](http://qutheory.io/) project (see [Usage](#usage)).
 
 ### Installation
 
@@ -22,7 +23,7 @@ $ npm install --save-dev gulp-vapor
 
 if you already have `package.json` file.
 
-### Usage 
+### Usage
 
 ##### Reload project when a source code changes
 
@@ -38,7 +39,7 @@ gulp.task('vapor:start', vapor.start);
 gulp.task('vapor:reload', vapor.reload);
 
 gulp.task('watch', function() {
-   gulp.watch('./App/**/*', ['vapor:reload']);
+   gulp.watch('./Sources/**/*', ['vapor:reload']);
 });
 
 
@@ -53,5 +54,23 @@ $ gulp
 
 By now, you should be able to see you project running in a browser at [http://localhost:8080](http://localhost:8080/). From now on, If you change something in your `App` folder, project will **reload automatically**.
 
+### Configuration
 
+If your project requires special configuration during  
 
+```js
+var vapor = require('gulp-vapor');
+
+vapor.config.commands.build = 'swift build --some-flag';
+vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']];
+```
+
+### Compatiblity
+
+* **v1.1.x** - 2016/09/10:
+
+	`gulp-vapor` is compatible with **Vapor 1.0.x**.
+
+* **v1.0.6** - 2016/05/22:
+
+	`gulp-vapor` is compatible with **Vapor 0.8.x**.

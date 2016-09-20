@@ -1,8 +1,12 @@
 import TaskPrefix from './prefix'
+import gutil from 'gulp-util'
 
 const Logger = (format) => {
 
     let _format;
+
+    const _infoColor = gutil.colors.green;
+    const _errorColor = gutil.colors.red;
 
     class Logger {
 
@@ -11,11 +15,11 @@ const Logger = (format) => {
         }
 
         info(message) {
-            console.log(_format, message.toString());
+            gutil.log(`${TaskPrefix}:`, _infoColor(message.toString()));
         }
 
         error(error) {
-            console.error(_format, error.toString());
+            gutil.log(`${TaskPrefix}:`, _errorColor(error.toString()));
         }
     }
 
