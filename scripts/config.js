@@ -5,7 +5,7 @@ const projectName = findProjectName();
 const Config = {
   projectName: projectName,
   commands: {
-    build: ['swift', 'build'],
+    build: 'swift build',
     start: [`.build/debug/${projectName}`, ['serve']]
   }
 };

@@ -61,8 +61,8 @@ If your project requires special configuration during
 ```js
 var vapor = require('gulp-vapor');
 
-vapor.config.commands.build = ['swift', 'build', '--some-flag']
-vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']]
+vapor.config.commands.build = 'swift build --some-flag';
+vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']];
 ```
 
 ### Compatiblity

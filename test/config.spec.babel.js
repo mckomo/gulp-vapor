@@ -35,12 +35,12 @@ describe('Config', () => {
 
           const _buildCommand = Config.commands.build;
 
-          it('is stored as array', () => {
-            expect(_buildCommand).be.a('array');
+          it('is stored as string', () => {
+            expect(_buildCommand).be.a('string');
           })
 
           it('holds default swift build command', () => {
-            expect(_buildCommand).to.have.members(['swift', 'build']);
+            expect(_buildCommand).to.eq('swift build');
           })
 
         });

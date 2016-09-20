@@ -11,7 +11,3 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', ['vapor:start', 'watch']);
-
-// Cofiguration example
-vapor.config.commands.build = ['swift', 'build', '--some-flag']
-vapor.config.commands.start = ['.build/debug/gulp-vapor', ['serve', '--port=80']]
