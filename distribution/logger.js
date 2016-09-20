@@ -10,6 +10,10 @@ var _prefix = require('./prefix');
 
 var _prefix2 = _interopRequireDefault(_prefix);
 
+var _gulpUtil = require('gulp-util');
+
+var _gulpUtil2 = _interopRequireDefault(_gulpUtil);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17,6 +21,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Logger = function Logger(format) {
 
     var _format = void 0;
+
+    var _infoColor = _gulpUtil2.default.colors.green;
+    var _errorColor = _gulpUtil2.default.colors.red;
 
     var Logger = function () {
         function Logger(format) {
@@ -28,12 +35,12 @@ var Logger = function Logger(format) {
         _createClass(Logger, [{
             key: 'info',
             value: function info(message) {
-                console.log(_format, message.toString());
+                _gulpUtil2.default.log(_prefix2.default + ':', _infoColor(message.toString()));
             }
         }, {
             key: 'error',
             value: function error(_error) {
-                console.error(_format, _error.toString());
+                _gulpUtil2.default.log(_prefix2.default + ':', _errorColor(_error.toString()));
             }
         }]);
 

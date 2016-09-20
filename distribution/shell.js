@@ -22,9 +22,17 @@ var Shell = function () {
         }
     }, {
         key: 'spawn',
-        value: function spawn(command, callback) {
-            var proc = (0, _child_process.spawn)(command);
-            callback(proc);
+        value: function spawn(program) {
+            var args = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+            var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+            var callback = arguments[3];
+
+
+            var proc = (0, _child_process.spawn)(program, args, options);
+
+            if (callback) {
+                callback(proc);
+            }
 
             return proc;
         }
